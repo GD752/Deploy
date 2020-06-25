@@ -1,4 +1,4 @@
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("https://devblackboard.herokuapp.com/");
 const snbar=document.createElement("div");
 const wpad=document.createElement("textArea");
 
