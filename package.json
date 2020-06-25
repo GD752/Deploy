@@ -7,9 +7,16 @@
     "start": "node express",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GD752/Deploy.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GD752/Deploy/issues"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
