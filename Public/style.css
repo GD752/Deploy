@@ -1,0 +1,82 @@
+.imgsze{
+    height: 10vh;
+}
+.tools{
+    display: flex;
+    justify-content: center;
+}
+.sticky{
+    display: none;
+    /* height:30vh;
+    width:15vw; */
+    background-color: azure;
+    position: absolute;
+    left: 100px;
+    top: 150px;
+}
+
+.sbar{
+    height: 5vh;
+    width: 15vw;
+    background-color: gray;
+}
+
+.wpad{
+    height: 25vh;
+    width: 14.6vw;
+    background-color: yellow;
+}
+
+
+.icons{
+    align-items: flex-end;
+}
+
+.topt{
+    position: absolute;
+    height: 8vh;
+    width: 11vw;
+    background-color: turquoise;
+    display: none;
+    
+}
+
+/* .popt{
+    display: none;
+}
+.eopt{
+    display: none;
+} */
+
+.tools{
+    position: relative;
+    z-index: 30;
+}
+
+.show{
+    display: block;
+}
+.colors{
+    border-radius: 50%;
+    z-index: 50;
+    height: 100%;
+    width: 20%;
+    /* display: flex;
+    justify-content: space-evenly; */
+}
+
+.colorsouter{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+#red{
+    background-color: red;
+}
+#blue{
+    background-color: blue;
+}
+#white{
+    background-color: white;
+}

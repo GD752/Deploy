@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<link rel="stylesheet" href="style.css">
+
+<body>
+    <!-- <button id="pen">P</button>
+    <button id="erase">E</button> -->
+    <div class="toolbar">
+        <div class="tools">
+            <div class="tool"><img src=".\NewIcons\Blue_pencil.svg" alt="" class="pencil imgsze"><div class="popt topt"></div></div>
+            <div class="tool"><img src=".\NewIcons\Eraser.svg" alt="" class="eraser imgsze"><div class="eopt topt"></div></div>
+            <div class="tool"><img src=".\NewIcons\StickyNote.svg" alt="" class="stickyic imgsze"></div>
+            <div class="tool"><img src=".\NewIcons\Undo.svg" alt="" class="undo imgsze"></div>
+            <div class="tool"><img src=".\NewIcons\Redo.svg" alt="" class="redo imgsze"></div>
+            <div class="tool"><img src=".\NewIcons\Download.svg" alt="" class="imgsze download"onclick="download()"></div>
+            <div class="tool"><input type="file" name="" id="inputFile"></div>
+        </div>
+    </div>
+    <div class="sticky"></div>
+    <canvas class="board">
+    </canvas>
+
+    <script>
+        var s_tool='none';
+        var isActive='lll';
+        const board=document.querySelector(".board");
+        board.height=window.innerHeight;
+        board.width=window.innerWidth;
+
+        const ctx=board.getContext("2d");
+        ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+        // ctx.fillStyle="red";
+        // ctx.fillRect(0,0,window.innerWidth/2,window.innerHeight/2);
+
+        const p=document.querySelector(".pencil")
+        const e=document.querySelector(".eraser")
+        const st=document.querySelector(".stickyic")
+        var snote=document.querySelector('.sticky');
+        var y=board.getBoundingClientRect().top;
+        const popt=document.querySelector(".popt");
+        const eopt=document.querySelector(".eopt");
+        // var ys=snote.getBoundingClientRect().top;
+        // var xs=snote.getBoundingClientRect().left;
+
+        popt.innerHTML='<input type="range" min="1" max="50" class="prad" value="3"><div class="colorsouter"><div class="colors" id="white"></div><div class="colors" id="blue"></div><div class="colors" id="red"></div></div>';
+        eopt.innerHTML='<input type="range" min="1" max="50" class="erad" value="11">';
+
+        const pslider=document.querySelector(".prad");
+        pslider.oninput = function() {
+            ctx.lineWidth = this.value;
+        }
+
+        const eslider=document.querySelector(".erad");
+        eslider.oninput = function() {
+            ctx.lineWidth = this.value;
+        }
+
+
+        p.addEventListener("click",function(){
+            if(isActive=='p'){
+                popt.classList.add("show")
+            }
+            else{
+            eopt.classList.remove("show");
+            isActive='p';
+            ctx.strokeStyle="white";
+            ctx.lineWidth=3;
+            s_tool='p';
+            work(s_tool);
+            }
+        })
+        
+        e.addEventListener("click",function(){
+            if(isActive=='e'){
+                eopt.classList.add("show")
+            }
+            else{
+            popt.classList.remove("show");
+            isActive='e';
+            hcc("black");
+            ctx.lineWidth=11;
+            s_tool='e';
+            work(s_tool);
+            }
+        })
+        
+        st.addEventListener('click',function(){
+            if(snote.style.display=='block')
+                snote.style.display='none';
+            else{
+                snote.style.display='block';
+                s_tool='sn';
+                work(s_tool);
+            }
+        })
+        
+        
+
+        // ctx.beginPath();        
+        // ctx.moveTo(100,200);
+        // ctx.lineTo(300,200);
+        // ctx.moveTo(100,200);
+        // ctx.lineTo(100,500);
+        
+        var isMouseDown=false;
+        
+        const redcolor=document.getElementById("red");
+        const bluecolor=document.getElementById("blue");
+        const whitecolor=document.getElementById("white");
+
+        redcolor.addEventListener("click",function(){
+            hcc("red");
+        })
+        bluecolor.addEventListener("click",function(){
+            hcc("blue");
+        })
+        whitecolor.addEventListener("click",function(){
+            hcc("white");
+        })
+        function hcc(color){
+            ctx.strokeStyle=color;
+            socket.emit("color",color);
+        }
+        
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js" crossorigin></script>
+        <script src="script.js"></script>
+        <script src="receiver.js"></script>
+        
+</body>
+</html>
