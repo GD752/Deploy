@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-app.use(express.static("public"));
-
-
+const path=require("path")
+// folder designated from which client can get files
+app.use(express.static("Public"));
 
 //listen socket connection 
 io.on('connection', function (socket) {
@@ -21,8 +21,7 @@ socket.broadcast.emit("onstart",point);
 socket.broadcast.emit("onend",point)
     })
 });
-// folder designated from which client can get files
-app.use(express.static('public'));
+
 // server start
 const port=process.env.PORT||3000
 server.listen(port, function (req,res) {
